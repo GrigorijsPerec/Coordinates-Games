@@ -3,6 +3,20 @@ from tkinter import *
 
 # ==================== FUNCTIONS ====================
 
+def Debug():
+    global dg
+
+    dg = Tk()
+    dg.title("Debug")
+    dg.geometry("350x200")
+    Button(dg, text='Rules', font=('Arial', 12), command=Rules).grid(column=1, row=1)
+    dg.mainloop()
+
+
+def Reset():
+    pass
+
+
 def Rules():
     global mb
 
@@ -18,7 +32,6 @@ def Rules():
     Rule4 = Label(mb, text="Правило №4:")
     Rule4.place(x=1, y=90)
     mb.mainloop()
-
 
 
 def Check():
@@ -65,7 +78,6 @@ myPos4Y = 353
 # Label(root, bg="black").place(x=myPos4X, y=myPos4X+1)
 
 root.bind("<Button>", drawRect)
+Button(root, text='Debug', font=('Arial', 12), command=Debug).grid(column=0, row=0)
 
-Button(root, text='Rules', font=('Arial', 12), command=Rules).pack(side=BOTTOM)
-Rules()
 root.mainloop()
