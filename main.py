@@ -21,19 +21,6 @@ def Reset():
     points.clear()
     b.destroy()
 
-    mb = Tk()
-    mb.title("Rules")
-    mb.geometry("450x350")
-    Rule1 = Label(mb, text="Правило №1: Первая точка поиска должна ставится в левом верхнем углу")
-    Rule1.place(x=1, y=1)
-    Rule2 = Label(mb, text="Правило №2: Вторая точка поиска должна ставится в правом нижнем углу")
-    Rule2.place(x=1, y=30)
-    Rule3 = Label(mb, text="Правило №3:")
-    Rule3.place(x=1, y=60)
-    Rule4 = Label(mb, text="Правило №4:")
-    Rule4.place(x=1, y=90)
-    mb.mainloop()
-
 
 def Check():
     if points[2] > myPos1X > points[0] and points[3] > myPos1Y > points[1]:
