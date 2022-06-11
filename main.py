@@ -4,21 +4,22 @@ from tkinter import *
 # ==================== FUNCTIONS ====================
 
 def Debug():
-    global dg
+    #    if action == 1:
+    myPos1.config(bg="black")
+    myPos2.config(bg="black")
+    myPos3.config(bg="black")
+    myPos4.config(bg="black")
 
-    dg = Tk()
-    dg.title("Debug")
-    dg.geometry("350x200")
-    Button(dg, text='Rules', font=('Arial', 12), command=Rules).grid(column=1, row=1)
-    dg.mainloop()
 
+#    else:
+#        myPos1.config(bg="white")
+#        myPos2.config(bg="white")
+#       myPos3.config(bg="white")
+#        myPos4.config(bg="white")
 
 def Reset():
-    pass
-
-
-def Rules():
-    global mb
+    points.clear()
+    b.destroy()
 
     mb = Tk()
     mb.title("Rules")
@@ -43,41 +44,56 @@ def Check():
         print('Point 3: Coordinates determined')
     if points[2] > myPos4X > points[0] and points[3] > myPos4Y > points[1]:
         print('Point 4: Coordinates determined')
+    print("\n ------------------------------- \n")
+    Debug()
 
 
 def drawRect(event):
-    global points
+    global points, b
     points.append(event.x)
     points.append(event.y)
     if len(points) == 4:
-        b = Button(root, bg="white")
+        b = Button(root, bg="#a0a8f1", relief=FLAT)
         b.place(x=min(points[0], points[2]),
                 y=min(points[1], points[3]))
-        b.place(width=abs(points[2] - points[0]),
-                height=abs(points[3] - points[1]))
-        print(points)
+        b.place(width=(points[2] - points[0]),
+                height=(points[3] - points[1]))
         Check()
 
 
 root = Tk()
-root.geometry("500x400")
+root.geometry("500x500")
 root.resizable(width=False, height=False)
 points = []  # [x1, y1,  x2, y2]
 
-myPos1X = 3
-myPos1Y = 3
-# Label(root, fg="black", bg="black").place(x=myPos1X, y=myPos1X+1)
+myPos1X = 376
+myPos1Y = 23
+myPos1 = Frame(root, bg="white")
+myPos1.place(x=myPos1X, y=myPos1Y, width=5, height=5)
+
 myPos2X = 208
 myPos2Y = 104
-# Label(root, bg="black").place(x=myPos2X, y=myPos2X+1)
+myPos2 = Frame(root, bg="white")
+myPos2.place(x=myPos2X, y=myPos2Y, width=5, height=5)
+
 myPos3X = 76
 myPos3Y = 97
-# Label(root, bg="black").place(x=myPos3X, y=myPos3X+1)
+myPos3 = Frame(root, bg="white")
+myPos3.place(x=myPos3X, y=myPos3Y, width=5, height=5)
+
 myPos4X = 330
 myPos4Y = 353
-# Label(root, bg="black").place(x=myPos4X, y=myPos4X+1)
+myPos4 = Frame(root, bg="white")
+myPos4.place(x=myPos4X, y=myPos4Y, width=5, height=5)
 
 root.bind("<Button>", drawRect)
-Button(root, text='Debug', font=('Arial', 12), command=Debug).grid(column=0, row=0)
 
+db = Tk()
+db.geometry('150x70')
+db.resizable(width=False, height=False)
+
+Button(db, text='Debug', font=('Arial', 12), command=Debug).pack(side=TOP)
+Button(db, text='Reset', font=('Arial', 12), command=Reset).pack(side=TOP)
+
+db.mainloop()
 root.mainloop()
